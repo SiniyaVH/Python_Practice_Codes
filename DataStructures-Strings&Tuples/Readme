@@ -1,1 +1,120 @@
-Data Structures - Strings & Tuples
+# 🐍 Python Strings & Tuples Practice
+
+This repository contains my **Python practice programs** focused on **Strings and Tuples**. The exercises are designed to build a strong foundation in Python data types, indexing, slicing, manipulation, and commonly used operations.
+
+## 📌 Topics Covered
+
+### 🔤 Strings
+
+* Creating and storing strings
+* Taking string input from the user
+* String concatenation
+* String indexing
+* String slicing
+* Accessing characters
+* Finding the length of a string using `len()`
+* Counting character occurrences using `count()`
+* Replacing text using `replace()`
+* Working with string methods
+* Formatting and displaying strings
+
+### 🔢 Tuples
+
+* Creating tuples
+* Accessing tuple elements
+* Tuple indexing
+* Tuple slicing
+* Concatenating tuples
+* Repeating tuple elements
+* Finding the length of a tuple
+* Accessing specific tuple elements
+* Using built-in tuple methods
+
+## 📝 Practice Examples
+
+Some of the exercises included in this repository are:
+
+```python
+# String example
+strM = "Python beginner tutorial"
+
+print(strM[0])
+print(strM[0:6])
+print(strM.count("t"))
+print(strM.replace("Python", "Machine Learning"))
+```
+
+```python
+# Tuple example
+t1 = (10, 20, 30)
+t2 = (40, 50, 60)
+
+t_combine = t1 + t2
+
+print(t_combine)
+print(t_combine[2])
+print(t_combine * 3)
+```
+
+## 🎯 Learning Objectives
+
+Through these exercises, I am practicing how to:
+
+* Understand Python strings and tuples
+* Access elements using indexing
+* Extract elements using slicing
+* Manipulate strings using built-in methods
+* Combine and repeat tuples
+* Work confidently with Python's sequence data types
+* Develop problem-solving skills through hands-on practice
+
+## 🛠️ Technologies Used
+
+* **Jupyter Notebook**
+* ** GitHub**
+
+## 📂 Repository Structure
+
+```text
+Strings-Tuples/
+│
+├── Strings/
+│   ├── string_indexing.py
+│   ├── string_slicing.py
+│   ├── string_methods.py
+│   └── string_practice.py
+│
+├── Tuples/
+│   ├── tuple_creation.py
+│   ├── tuple_indexing.py
+│   ├── tuple_slicing.py
+│   └── tuple_practice.py
+│
+└── README.md
+```
+
+
+## 📚 Key Python Concepts
+
+| Concept             | Example                         |
+| ------------------- | ------------------------------- |
+| String              | `"Hello Python"`                |
+| Tuple               | `(10, 20, 30)`                  |
+| Indexing            | `text[0]`                       |
+| Slicing             | `text[1:5]`                     |
+| Length              | `len(text)`                     |
+| Count               | `text.count("a")`               |
+| Replace             | `text.replace("Python", "SQL")` |
+| Tuple Concatenation | `tuple1 + tuple2`               |
+| Tuple Repetition    | `tuple1 * 3`                    |
+
+## 🌱 Learning Journey
+
+This repository is part of my **Python learning journey**, where I am building my programming fundamentals through regular practice and problem-solving.
+
+More Python concepts and practice exercises will be added as I continue learning.
+
+---
+
+⭐ **If you find this repository useful, feel free to star it!**
+

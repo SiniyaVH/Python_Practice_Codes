@@ -1,1 +1,204 @@
+# 🐍 Python – Lists, Dictionaries, Sets & Conditional Statements
+
+This repository contains my **Python practice programs** focused on fundamental data structures and decision-making concepts. These exercises are designed to strengthen my understanding of Python programming through simple, practical examples.
+
+## 📚 Topics Covered
+
+### 1. Lists
+
+A **list** is an ordered and mutable collection that can store multiple values.
+
+Topics practiced:
+
+* Creating lists
+* Accessing list elements
+* Positive and negative indexing
+* List slicing
+* Adding elements
+* Removing elements
+* Updating elements
+* Finding the length of a list
+* Common list methods
+* Iterating through lists
+
+Example:
+
+```python
+students = ["Anu", "Rahul", "Meera"]
+
+print(students[0])
+print(students[-1])
+```
+
+---
+
+### 2. Dictionaries
+
+A **dictionary** stores data in **key-value pairs**.
+
+Topics practiced:
+
+* Creating dictionaries
+* Accessing values using keys
+* Adding key-value pairs
+* Updating values
+* Removing elements
+* Using `keys()`, `values()`, and `items()`
+* Accessing student marks
+* Iterating through dictionaries
+
+Example:
+
+```python
+students = {
+    "Anu": 85,
+    "Rahul": 78,
+    "Meera": 92
+}
+
+print(students["Meera"])
+```
+
+Output:
+
+```text
+92
+```
+
+---
+
+### 3. Sets
+
+A **set** is an unordered collection of unique elements.
+
+Topics practiced:
+
+* Creating sets
+* Adding elements
+* Removing elements
+* Removing duplicate values
+* Union
+* Intersection
+* Difference
+* Membership checking
+
+Example:
+
+```python
+numbers = {1, 2, 3, 3, 4}
+
+print(numbers)
+```
+
+Output:
+
+```text
+{1, 2, 3, 4}
+```
+
+---
+
+### 4. Conditional Statements
+
+Conditional statements are used to make decisions in Python based on specific conditions.
+
+Topics practiced:
+
+* `if` statement
+* `if-else`
+* `if-elif-else`
+* Nested `if`
+* Comparison operators
+* Logical operators
+* Membership operators
+* Conditional expressions
+
+Example:
+
+```python
+score = 85
+
+if score >= 50:
+    print("Pass")
+else:
+    print("Fail")
+```
+
+Output:
+
+```text
+Pass
+```
+
+---
+
+## 🧠 Key Python Concepts
+
+| Concept      | Purpose                                       |
+| ------------ | --------------------------------------------- |
+| `list`       | Stores ordered and changeable collections     |
+| `dictionary` | Stores key-value pairs                        |
+| `set`        | Stores unique elements                        |
+| `if`         | Executes code when a condition is true        |
+| `elif`       | Checks another condition                      |
+| `else`       | Executes when previous conditions are false   |
+| `and`        | Checks whether multiple conditions are true   |
+| `or`         | Checks whether at least one condition is true |
+| `not`        | Reverses a condition                          |
+
+## 🎯 Learning Objectives
+
+Through these exercises, I am developing skills in:
+
+* Understanding Python data structures
+* Working with collections of data
+* Accessing and modifying data
+* Applying conditional logic
+* Solving beginner-level programming problems
+* Writing clean and readable Python code
+* Building a strong foundation for further Python learning
+
+## 📂 Repository Structure
+
+```text
+Python-List-Dictionary-Set-Conditional/
+│
+├── List/
+│   ├── list_basics.py
+│   ├── list_indexing.py
+│   └── list_slicing.py
+│
+├── Dictionary/
+│   ├── dictionary_basics.py
+│   ├── student_marks.py
+│   └── dictionary_methods.py
+│
+├── Set/
+│   ├── set_basics.py
+│   ├── set_operations.py
+│   └── set_methods.py
+│
+├── Conditional_Statements/
+│   ├── if_statement.py
+│   ├── if_else.py
+│   ├── if_elif_else.py
+│   └── nested_if.py
+│
+└── README.md
+```
+
+## 🛠️ Technologies Used
+
+* ** Jupyter Notebook**
+* **GitHub**
+
+## 🚀 Purpose of This Repository
+
+This repository is part of my **Python programming practice** and learning journey. It contains hands-on exercises that help build a strong foundation in Python before moving on to more advanced concepts such as loops, functions, object-oriented programming, data analysis, and automation.
+
+## 📌 Author
+
+**Siniya V**
+
+This repository is created for **learning, practice, and skill development in Python programming**.
 

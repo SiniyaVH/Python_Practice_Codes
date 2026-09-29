@@ -1,1 +1,340 @@
+# 📝 Customer Feedback Data Cleaning & Analysis Using Python
+
+## 📌 Project Overview
+
+This project demonstrates how Python can be used to **collect, clean, process, and analyze customer feedback data**.
+
+The project starts with a dictionary containing customer names, written feedback, serial numbers, and ratings. New feedback entries are collected from the user and added dynamically. The feedback text is then cleaned and analyzed to extract useful information.
+
+This project is designed as a beginner-friendly Python exercise to practice **lists, dictionaries, loops, functions, string manipulation, sets, `zip()`, `sorted()`, and `lambda` functions**.
+
+---
+
+## 🎯 Objectives
+
+The main objectives of this project are:
+
+* Collect additional customer feedback from users.
+* Automatically generate serial numbers for new feedback.
+* Append new records to an existing dictionary.
+* Clean customer feedback text.
+* Convert feedback to lowercase.
+* Remove unwanted punctuation.
+* Remove extra spaces.
+* Calculate the average customer rating.
+* Find the feedback with the longest comment.
+* Identify unique words used across all feedback.
+* Sort feedback based on rating.
+
+---
+
+## 📊 Dataset Structure
+
+The feedback data is stored in a Python dictionary containing four lists:
+
+| Column     | Description                   |
+| ---------- | ----------------------------- |
+| `S_No`     | Serial number of the feedback |
+| `Name`     | Customer name                 |
+| `Feedback` | Written customer feedback     |
+| `Rating`   | Customer rating from 1 to 5   |
+
+Example:
+
+```python
+feedback_data = {
+    'S_No': [1, 2, 3],
+    'Name': ['Ravi', 'Meera', 'Sam'],
+    'Feedback': [
+        'Very GOOD Service!!!',
+        'poor support, not happy',
+        'GREAT experience!'
+    ],
+    'Rating': [5, 2, 5]
+}
+```
+
+---
+
+## 🔄 Project Workflow
+
+```text
+Start
+  ↓
+Existing Feedback Data
+  ↓
+Ask User for Number of New Feedbacks
+  ↓
+Collect Name, Feedback & Rating
+  ↓
+Automatically Generate S_No
+  ↓
+Append New Data
+  ↓
+Clean Feedback Text
+  ↓
+Convert to Lowercase
+  ↓
+Remove Punctuation
+  ↓
+Remove Extra Spaces
+  ↓
+Analyze Feedback
+  ↓
+Average Rating
+  ↓
+Longest Feedback
+  ↓
+Unique Words
+  ↓
+Sort by Rating
+```
+
+---
+
+## 🧹 Data Cleaning
+
+The feedback text is cleaned using Python string methods.
+
+### 1. Convert text to lowercase
+
+```python
+feedback = feedback.lower()
+```
+
+Example:
+
+```text
+"Very GOOD Service"
+```
+
+becomes:
+
+```text
+"very good service"
+```
+
+### 2. Remove punctuation
+
+The following punctuation marks are removed:
+
+```text
+. , ! ?
+```
+
+Example:
+
+```text
+"Excellent service!!!"
+```
+
+becomes:
+
+```text
+"excellent service"
+```
+
+### 3. Remove extra spaces
+
+```python
+feedback = " ".join(feedback.split())
+```
+
+This removes leading/trailing spaces and converts multiple spaces into a single space.
+
+Example:
+
+```text
+"  very    good   service  "
+```
+
+becomes:
+
+```text
+"very good service"
+```
+
+---
+
+## ➕ Adding New Feedback
+
+The user is asked how many additional feedback records they want to enter.
+
+```python
+n = int(input("How many more feedbacks do you want to add? "))
+```
+
+For every new feedback, the program collects:
+
+* Name
+* Written Feedback
+* Rating
+
+The serial number is generated automatically:
+
+```python
+next_sno = len(feedback_data['S_No']) + 1
+```
+
+Therefore, if the existing records end at `10`, new records start from:
+
+```text
+11
+12
+13
+...
+```
+
+---
+
+## 📈 Feedback Analysis
+
+### Average Rating
+
+The average rating is calculated using:
+
+```python
+average_rating = sum(ratings) / len(ratings)
+```
+
+The result can be rounded using:
+
+```python
+round(average_rating, 2)
+```
+
+---
+
+### 📝 Longest Feedback
+
+The project finds the feedback containing the highest number of words:
+
+```python
+longest_feedback = max(
+    feedbacks,
+    key=lambda x: len(x.split())
+)
+```
+
+`split()` separates the feedback into individual words, while `len()` counts them.
+
+---
+
+### 🔤 Unique Words
+
+A Python `set` is used to avoid duplicate words:
+
+```python
+unique_words = set()
+
+for feedback in feedbacks:
+    words = feedback.split()
+    unique_words.update(words)
+```
+
+Since sets do not store duplicate values, each word appears only once.
+
+---
+
+## ⭐ Sorting Feedback by Rating
+
+The feedback can optionally be sorted from highest rating to lowest rating.
+
+Using `zip()`:
+
+```python
+sorted_feedbacks = list(zip(
+    feedback_data['S_No'],
+    feedback_data['Name'],
+    feedback_data['Feedback'],
+    feedback_data['Rating']
+))
+```
+
+Then:
+
+```python
+sorted_feedbacks = sorted(
+    sorted_feedbacks,
+    key=lambda x: x[3],
+    reverse=True
+)
+```
+
+Here:
+
+* `x[0]` → Serial Number
+* `x[1]` → Name
+* `x[2]` → Feedback
+* `x[3]` → Rating
+* `reverse=True` → Highest rating first
+
+---
+
+## 🐍 Python Concepts Practiced
+
+This project covers the following Python concepts:
+
+* Variables
+* User input
+* Lists
+* Dictionaries
+* `for` loops
+* `if` statements
+* String methods
+* `.lower()`
+* `.replace()`
+* `.split()`
+* `.join()`
+* `.strip()`
+* `append()`
+* `set()`
+* `update()`
+* `len()`
+* `sum()`
+* `max()`
+* `zip()`
+* `sorted()`
+* `lambda`
+* Functions
+* Data cleaning
+* Basic data analysis
+
+---
+
+## 💡 Key Learning
+
+This project demonstrates a simple real-world data analytics workflow:
+
+> **Collect → Clean → Transform → Analyze → Sort**
+
+These are important steps when working with real-world customer feedback and other unstructured text data.
+
+---
+
+## 🛠️ Technologies Used
+
+* **Jupyter Notebook **
+* Python Standard Library
+
+---
+
+
+
+## 📂 Project Structure
+
+```text
+Customer-Feedback-Analysis/
+│
+├── feedback_analysis.py
+└── README.md
+```
+
+---
+
+## 👩‍💻 Author
+
+**Siniya V**
+
+This project was created as part of Python learning and data analytics practice, focusing on data cleaning, manipulation, and basic analysis.
 

@@ -1,1 +1,265 @@
+# NumPy & Pandas Practice
+
+## 📌 Overview
+
+This repository contains my practice work on **NumPy** and **Pandas** using Python.
+
+The notebook focuses on understanding the fundamentals of numerical arrays, Pandas Series, and DataFrames through hands-on exercises. I practiced creating, accessing, filtering, modifying, and analyzing data using NumPy and Pandas.
+
+## 🛠️ Technologies Used
+
+* Python
+* NumPy
+* Pandas
+* Jupyter Notebook
+
+## 📂 File
+
+* `Numpy&Pandas.ipynb` – Contains all NumPy and Pandas practice exercises and solutions.
+
+## 🔢 NumPy Topics Covered
+
+### 1. Creating NumPy Arrays
+
+* Created 1D NumPy arrays
+* Created 2D NumPy arrays
+* Worked with weekly temperature data
+
+### 2. Array Properties
+
+Practiced finding:
+
+* `shape`
+* `dtype`
+* `size`
+
+### 3. Mathematical Operations
+
+Converted Celsius temperatures to Fahrenheit using:
+
+```python
+Fahrenheit = (Celsius * 9/5) + 32
+```
+
+Also calculated:
+
+* Maximum value using `.max()`
+* Minimum value using `.min()`
+* Mean using `.mean()`
+
+### 4. Array Indexing and Slicing
+
+Practiced extracting:
+
+* First three elements
+* Last two elements
+* Middle elements
+* Individual rows from a 2D array
+* Weekend temperatures
+
+Example:
+
+```python
+temperatures[0][-2:]
+```
+
+## 🐼 Pandas Topics Covered
+
+### 1. Pandas Series
+
+Created a Series containing student marks with custom index labels:
+
+```text
+Rank1    95
+Rank2    92
+Rank3    89
+Rank4    85
+Rank5    80
+```
+
+### 2. Series Indexing
+
+Practiced:
+
+* Integer-based indexing using `iloc`
+* Label-based indexing using `loc`
+* Boolean filtering
+
+Examples:
+
+```python
+marks.iloc[0]
+```
+
+```python
+marks.loc["Rank1":"Rank3"]
+```
+
+```python
+marks[marks > 90]
+```
+
+### 3. Modifying and Removing Data
+
+Practiced:
+
+* Updating a Series value
+* Removing an entry using `drop()`
+* Performing calculations on Series
+
+Example:
+
+```python
+marks.iloc[0] = 100
+```
+
+Calculated CGPA by dividing marks by 10:
+
+```python
+CGPA = marks / 10
+```
+
+## 📊 Pandas DataFrame
+
+Created a `transactions` DataFrame containing:
+
+* Transaction ID
+* Product Category
+* Region
+* Amount
+
+The dataset contains transaction records across **Electronics, Clothing, and Furniture** categories and **North, South, East, and West** regions.
+
+## 🔍 DataFrame Operations Practiced
+
+### Basic DataFrame Inspection
+
+Practiced:
+
+```python
+transactions.head()
+transactions.tail()
+transactions.shape
+transactions.columns
+transactions.dtypes
+```
+
+### Selecting Columns
+
+Selected specific columns:
+
+```python
+transactions[['ProductCategory', 'Amount']]
+```
+
+Retrieved the last three columns using:
+
+```python
+transactions.iloc[:, -3:]
+```
+
+### Filtering Data
+
+Filtered transactions where:
+
+* Region is `North`
+* Amount is greater than `200`
+
+```python
+transactions[
+    (transactions["Region"] == "North") &
+    (transactions["Amount"] > 200)
+]
+```
+
+### Counting Categories
+
+Used `value_counts()` to find the number of transactions in each product category:
+
+```python
+transactions["ProductCategory"].value_counts()
+```
+
+### Finding Unique Values
+
+Found unique regions using:
+
+```python
+transactions["Region"].unique()
+```
+
+### GroupBy and Aggregation
+
+Calculated the mean transaction amount for each region:
+
+```python
+transactions.groupby("Region")["Amount"].mean()
+```
+
+### Updating Data
+
+Modified the amount for Transaction ID `102`:
+
+```python
+transactions.loc[
+    transactions["TransactionID"] == 102,
+    "Amount"
+] = 165
+```
+
+### Creating a New Column
+
+Added a `Discount` column containing 10% of the transaction amount:
+
+```python
+transactions["Discount"] = transactions["Amount"] * 0.10
+```
+
+### Removing a Row
+
+Removed the transaction with Transaction ID `109`.
+
+### Removing a Column
+
+Removed the `Discount` column using:
+
+```python
+transactions = transactions.drop("Discount", axis=1)
+```
+
+## 🎯 Learning Objectives
+
+Through this practice, I worked on:
+
+* Understanding NumPy arrays
+* Working with array dimensions and properties
+* NumPy indexing and slicing
+* Performing mathematical operations on arrays
+* Creating and manipulating Pandas Series
+* Understanding `loc` and `iloc`
+* Boolean filtering
+* Creating and exploring DataFrames
+* Selecting rows and columns
+* Filtering DataFrames using multiple conditions
+* Counting categorical values
+* Finding unique values
+* Grouping data and calculating averages
+* Updating existing data
+* Creating calculated columns
+* Removing rows and columns
+
+## 🚀 Key Takeaways
+
+This practice helped me build a foundation in **NumPy and Pandas**, which are important Python libraries for data analysis.
+
+I learned how to manipulate structured data, perform basic analysis, and prepare datasets for further data analytics and visualization tasks.
+
+## 📚 Repository Purpose
+
+This repository is part of my **Python Data Analytics learning journey** and contains hands-on practice that supports my preparation for working with real-world datasets and data analysis projects.
+
+---
+
+⭐ **If you find this repository useful, feel free to explore the notebook and follow my learning journey!**
+
 

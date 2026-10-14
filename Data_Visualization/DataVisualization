@@ -1,1 +1,363 @@
+# 🚕 Treating Missing Values and Data Visualization Using Python
+
+## 📌 Project Overview
+
+This project focuses on data cleaning, handling missing values, and data visualization using Python. The built-in `taxis` dataset from Seaborn is used to explore taxi trip information, including fares, pickup locations, payment methods, distances, and tips.
+
+The project demonstrates how to identify and treat missing values using Pandas and create meaningful visualizations using Pandas Plot, Matplotlib, and Seaborn.
+
+The goal is to prepare data for analysis, explore patterns, and communicate useful insights through charts.
+
+## 🎯 Project Objectives
+
+* Load and explore the taxi dataset.
+* Identify missing values in different columns.
+* Understand and treat missing values using Pandas.
+* Prepare data for visualization.
+* Analyze taxi fares and trip patterns.
+* Compare total fares across pickup boroughs.
+* Examine payment method preferences.
+* Understand the distribution of trip distances.
+* Compare tip amounts across pickup boroughs.
+* Develop practical data cleaning and visualization skills.
+
+## 🛠️ Technologies Used
+
+* **Python** — Programming and data analysis.
+* **Pandas** — Data manipulation, cleaning, and missing-value treatment.
+* **Matplotlib** — Creating and customizing charts.
+* **Seaborn** — Loading the dataset and creating statistical visualizations.
+* **Jupyter Notebook / Google Colab** – Writing and executing Python code.
+
+## 📂 Dataset Description
+
+The project uses the built-in `taxis` dataset available through Seaborn.
+
+The dataset contains information about taxi trips, including pickup and drop-off timestamps, passenger counts, distances, fares, tips, payment methods, and pickup and drop-off locations.
+
+### Important Columns
+
+| Column            | Description                    |
+| ----------------- | ------------------------------ |
+| `pickup`          | Date and time of pickup        |
+| `dropoff`         | Date and time of drop-off      |
+| `passengers`      | Number of passengers           |
+| `distance`        | Trip distance in miles         |
+| `fare`            | Taxi fare amount               |
+| `tip`             | Tip amount                     |
+| `tolls`           | Toll charges                   |
+| `total`           | Total trip charge              |
+| `payment`         | Payment method                 |
+| `pickup_borough`  | Borough where the trip started |
+| `dropoff_borough` | Borough where the trip ended   |
+
+## 🧹 Part 1: Treating Missing Values
+
+Missing values are common in real-world datasets. They can affect calculations, visualizations, and analytical results if they are not handled appropriately.
+
+### 1. Load the Dataset
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = sns.load_dataset("taxis")
+
+print(df.head())
+```
+
+### 2. Inspect the Dataset
+
+```python
+# Check the number of rows and columns
+print(df.shape)
+
+# Display column names and data types
+print(df.info())
+
+# Generate descriptive statistics
+print(df.describe())
+```
+
+### 3. Identify Missing Values
+
+```python
+# Count missing values in each column
+print(df.isnull().sum())
+```
+
+This helps identify columns containing missing values and determine which columns require further investigation.
+
+### 4. Calculate Missing Value Percentages
+
+```python
+missing_percentage = (df.isnull().sum() / len(df)) * 100
+
+print(missing_percentage.sort_values(ascending=False))
+```
+
+This calculates the percentage of missing values in each column.
+
+### 5. Treat Missing Values
+
+The appropriate treatment depends on the column, the amount of missing data, and the reason the values are missing.
+
+**Example: Remove rows with missing values in selected columns**
+
+```python
+df_clean = df.dropna(
+    subset=["pickup_borough", "fare"]
+)
+```
+
+This creates a new DataFrame containing only rows where both `pickup_borough` and `fare` are available.
+
+**Example: Fill missing numerical values with the median**
+
+```python
+df_clean["distance"] = df_clean["distance"].fillna(
+    df_clean["distance"].median()
+)
+```
+
+The median can be useful for numerical columns when the distribution is skewed or contains outliers.
+
+**Example: Fill missing categorical values**
+
+```python
+df_clean["payment"] = df_clean["payment"].fillna(
+    "Unknown"
+)
+```
+
+This preserves records with missing payment information by assigning them an `Unknown` category.
+
+**Important:** These are example treatments, not a requirement to apply every method to every column. Choose the method based on the analytical purpose. For example, a missing tip should not automatically be interpreted as a zero tip.
+
+### 6. Verify Missing Value Treatment
+
+```python
+print(df_clean.isnull().sum())
+```
+
+This checks the remaining missing values in the cleaned DataFrame.
+
+## 📊 Part 2: Data Visualization
+
+After inspecting and preparing the dataset, visualizations can be used to understand taxi trip patterns and explore business questions.
+
+### 1. Line Chart — Taxi Fare Over Time
+
+**Objective:** Visualize how taxi fares vary over time.
+
+```python
+df_clean["pickup"] = pd.to_datetime(
+    df_clean["pickup"]
+)
+
+df_clean = df_clean.sort_values("pickup")
+
+plt.figure(figsize=(6,4))
+
+plt.plot(
+    df_clean["pickup"],
+    df_clean["fare"]
+)
+
+plt.title("Taxi Fare Over Time")
+plt.xlabel("Pickup Timestamp")
+plt.ylabel("Fare ($)")
+plt.xticks(rotation=45)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Analysis:** Examine changes in individual trip fares over time. Aggregating fares by hour or day can help reveal broader trends more clearly.
+
+### 2. Bar Chart — Total Fare by Pickup Borough
+
+**Objective:** Compare the total fare across pickup boroughs.
+
+```python
+borough_fare = df_clean.groupby(
+    "pickup_borough"
+)["fare"].sum()
+
+borough_fare.plot(
+    kind="bar",
+    figsize=(8, 5)
+)
+
+plt.title("Total Fare by Pickup Borough")
+plt.xlabel("Pickup Borough")
+plt.ylabel("Total Fare ($)")
+plt.xticks(rotation=45)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Analysis:** Identify the boroughs contributing the highest total fare. Interpret the results alongside trip counts because total fare depends partly on the number of trips.
+
+### 3. Pie Chart — Trip Distribution by Payment Method
+
+**Objective:** Understand the distribution of trips across payment methods.
+
+```python
+payment_counts = df_clean["payment"].value_counts()
+
+payment_counts.plot(
+    kind="pie",
+    autopct="%1.1f%%",
+    figsize=(7, 7),
+    startangle=90
+)
+
+plt.title("Trip Distribution by Payment Method")
+plt.ylabel("")
+
+plt.show()
+```
+
+**Analysis:** Compare the percentage of trips associated with each payment method.
+
+The `autopct="%1.1f%%"` parameter displays the percentage of each pie slice to one decimal place.
+
+### 4. Histogram — Distribution of Trip Distance
+
+**Objective:** Understand the frequency distribution of taxi trip distances.
+
+```python
+distance_data = df_clean["distance"].dropna()
+
+plt.figure(figsize=(6,4))
+
+plt.hist(
+    distance_data,
+    bins=30,
+    edgecolor="black"
+)
+
+plt.title("Distribution of Taxi Trip Distance")
+plt.xlabel("Distance (miles)")
+plt.ylabel("Number of Trips")
+plt.grid(axis="y", alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Analysis:** Examine whether trips are concentrated in shorter or longer distance ranges and identify potential skewness in the distribution.
+
+### 5. Box Plot — Tip Distribution by Pickup Borough
+
+**Objective:** Compare tip distributions across pickup boroughs.
+
+```python
+tip_data = df_clean.dropna(
+    subset=["pickup_borough", "tip"]
+)
+
+plt.figure(figsize=(6,4))
+
+tip_data.boxplot(
+    column="tip",
+    by="pickup_borough",
+    grid=False
+)
+
+plt.suptitle("")
+plt.title("Tip Distribution by Pickup Borough")
+plt.xlabel("Pickup Borough")
+plt.ylabel("Tip Amount ($)")
+plt.xticks(rotation=45)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Analysis:** Compare median tips, the spread of tip amounts, and potential outliers across pickup boroughs.
+
+## 🔍 Key Analytical Questions
+
+This project explores the following questions:
+
+1. Which columns contain missing values?
+2. What percentage of values is missing in each column?
+3. Which missing-value treatment is appropriate for different data types?
+4. How do taxi fares vary over time?
+5. Which pickup borough contributes the highest total fare?
+6. Which payment method accounts for the largest share of trips?
+7. What is the distribution of taxi trip distances?
+8. How do tip amounts vary across pickup boroughs?
+9. How can data cleaning improve the reliability of visualizations?
+
+## 💡 Business Applications
+
+The techniques demonstrated in this project can help transportation businesses:
+
+* Improve data quality before performing analysis.
+* Understand revenue patterns across pickup locations.
+* Explore trip frequency and payment preferences.
+* Examine distance and fare distributions.
+* Compare tipping patterns across locations.
+* Support data-driven operational decisions.
+
+## 📚 Skills Demonstrated
+
+* Data loading and inspection
+* DataFrame manipulation using Pandas
+* Missing-value identification using `isnull()` and `sum()`
+* Missing-value percentage calculation
+* Missing-value treatment using `dropna()` and `fillna()`
+* Datetime conversion using `pd.to_datetime()`
+* Data grouping and aggregation using `groupby()`
+* Frequency analysis using `value_counts()`
+* Data visualization using Pandas Plot and Matplotlib
+* Data exploration using Seaborn
+* Chart interpretation and analytical thinking
+
+## 🚀 How to Run the Project
+
+### Step 1: Install the Required Libraries
+
+```bash
+pip install pandas matplotlib seaborn
+```
+
+### Step 2: Import the Libraries
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+### Step 3: Load the Dataset
+
+```python
+df = sns.load_dataset("taxis")
+```
+
+### Step 4: Clean the Data
+
+Inspect missing values and apply appropriate treatments based on the requirements of the analysis.
+
+### Step 5: Create the Visualizations
+
+Run the code for the five charts to explore fares, pickup boroughs, payment methods, trip distances, and tip distributions.
+
+## 📝 Conclusion
+
+This project demonstrates the importance of treating missing values before performing data analysis and visualization. Using Pandas, Matplotlib, and Seaborn, the taxi dataset is explored through multiple charts to understand fare patterns, trip distances, payment preferences, and tip distributions.
+
+The project strengthens practical skills in data cleaning, exploratory data analysis, and data visualization, providing a foundation for more advanced projects in transportation analytics and business intelligence.
+
+## 👩‍💻 Author
+
+**Data Analytics Learner**
+
+This project is part of my learning journey in Python, data cleaning, exploratory data analysis, and data visualization.
 

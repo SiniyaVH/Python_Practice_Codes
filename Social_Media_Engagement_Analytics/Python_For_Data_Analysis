@@ -1,1 +1,369 @@
+📊 Social Media Engagement Analysis
 
+📌 Project Overview
+
+This project explores a social media engagement dataset using Python. It
+combines data inspection, cleaning, NumPy/Pandas operations, descriptive
+statistics, and visualizations built with Matplotlib, Seaborn, and
+Plotly.
+
+The notebook works with a dataset of 5,000 records and 19 columns.
+The fields include post and user information, age, gender, country, post
+type and category, likes, comments, shares, watch time, impressions,
+posting timestamp, follower count, verification status, device type,
+sentiment, hashtags, and engagement rate.
+
+🎯 Project Objectives
+
+Analyze engagement metrics such as likes, comments, and shares.
+Explore the relationship between likes and impressions.
+Identify post categories with higher posting activity.
+Compare average likes across different content categories.
+Understand the distribution of post types and user demographics.
+Examine engagement rates and identify potential outliers.
+Explore the relationship between follower count and sentiment.
+Use correlation analysis to understand relationships between numerical variables.
+Present findings through static and interactive visualizations.
+Inspect the dataset's structure, data types, and missing values.
+Explore post categories, post types, and audience characteristics.
+Calculate engagement metrics and summary statistics.
+Examine relationships between impressions, likes, comments, shares,follower count, and engagement rate.
+Communicate patterns and limitations through static and interactive visualizations.
+
+Tools and Libraries
+
+Python --- analysis workflow
+
+Pandas --- data loading, cleaning, grouping, and aggregation
+
+NumPy --- array operations and numerical calculations
+
+Matplotlib --- charts and customization
+
+Seaborn --- statistical visualizations
+
+Plotly Express --- interactive scatter plot
+
+📂 Dataset
+
+The dataset contains 5,000 records and 19 columns related to social media engagement.
+
+Dataset: Social Media Engagement Dataset
+
+Important Columns
+Column	                   Description
+user_id	                Unique user identifier
+age                    	Age of the user
+gender                	Gender of the user
+country	                User's country
+post_id	                Post identifier
+post_type	              Type of social media post
+post_category          	Category of the post
+likes	                  Number of likes received
+comments              	Number of comments received
+shares                	Number of shares
+watch_time_sec	        Watch time in seconds
+impression_count	      Number of impressions
+posted_at	              Post timestamp
+follower_count        	Number of followers
+is_verified	            Verification status
+device_type	            Device used
+sentiment	              Sentiment associated with the post
+hashtags	              Hashtags associated with the post
+engagement_rate        	Engagement rate recorded in the dataset
+
+The notebook loads the CSV directly from this GitHub raw-file URL:
+
+https://raw.githubusercontent.com/GeethaGunasekaran1/Dataset_rep/refs/heads/main/social_media_engagement_5000.csv
+
+# Load the data
+
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import plotly.express as px
+
+url = "https://raw.githubusercontent.com/GeethaGunasekaran1/Dataset_rep/refs/heads/main/social_media_engagement_5000.csv"
+file = pd.read_csv(url)
+
+print(file.shape)
+file.head()
+
+
+🛠️ Tools and Technologies
+
+Python – Programming and data analysis
+Pandas – Data manipulation and cleaning
+NumPy – Numerical operations
+Matplotlib – Data visualization
+Seaborn – Statistical visualization
+Plotly – Interactive visualization
+Jupyter Notebook – Development environment
+
+🔍 Analysis Workflow
+
+Data loading and inspection --- read_csv(), head(),
+tail(), shape, columns, info(), and describe().
+
+Data exploration --- value counts, unique categories, grouping,
+and correlation analysis.
+
+Data wrangling --- calculate engagement_score as likes +
+comments + shares; count hashtags; summarize average likes, total
+shares, and post counts by post type, country, and sentiment.
+
+Statistical analysis --- calculate measures such as mean,
+median, mode, standard deviation, variance, percentiles, skewness,
+and kurtosis for available metrics.
+
+Visualization --- use Matplotlib, Seaborn, and Plotly to inspect
+distributions, comparisons, and relationships.
+
+📈 Visualizations and Insights
+
+Interpretation note: The insights below describe the patterns
+visible in the notebook's saved plots. They are descriptive, not proof
+of causation. The charts do not by themselves establish statistical
+significance.
+
+1. Scatter Plot --- Likes vs. Impressions
+
+What it shows: Each point represents a post, with impressions on the
+x-axis and likes on the y-axis.
+
+Insight: Likes are widely spread across the range of impression
+counts. The plot does not show a clear, strong linear relationship
+between impressions and likes in this sample. Impressions alone may not
+explain why some posts receive more likes than others.
+
+Possible next step: Calculate the correlation and compare likes per
+impression across post types and categories.
+
+2. Line Chart --- Daily Engagement Trend
+
+What it shows: The average engagement_score for each posting date,
+where engagement_score = likes + comments + shares.
+
+Insight: Daily average engagement fluctuates considerably, with
+occasional high and low points. The plotted period does not show an
+obvious sustained upward or downward trend.
+
+Possible next step: Aggregate by week or month to reduce day-to-day
+noise and check whether recurring patterns exist.
+
+3. Bar Chart --- Number of Posts by Category
+
+What it shows: The number of records/posts in each post_category.
+
+Insight: Post counts are fairly balanced across categories. Fitness
+and Technology appear among the higher-count categories, while Fashion
+and Food are among the lower-count categories. The differences are
+modest rather than extreme.
+
+Business implication: Category-level performance comparisons should
+account for the relatively similar sample sizes.
+
+4. Pie Chart --- Gender Distribution
+
+What it shows: The proportion of records by gender category.
+
+Insight: Male, Other, and Female each account for roughly one-third
+of the displayed records; the chart also includes a small missing/NaN
+segment (about 2%). No single displayed gender category dominates the
+distribution.
+
+Data-quality note: Resolve or explicitly retain missing gender
+values before reporting audience demographics.
+
+5. Histogram --- Age Distribution
+
+What it shows: The distribution of ages across the records.
+
+Insight: Ages span a broad range, approximately from the mid-teens
+to the mid-sixties. The distribution is spread across multiple age
+bands, with a visible local peak in the late-thirties range rather than
+all records being concentrated in one narrow age group.
+
+Possible next step: Create age bands and compare average engagement
+or post counts by age group.
+
+6. Box Plot --- Engagement Rate
+
+What it shows: The distribution of engagement_rate, including its
+median, spread, and outliers.
+
+Insight: The distribution is strongly right-skewed: most values are
+concentrated near the lower end, while a number of high-value outliers
+extend far to the right. A small number of posts therefore have much
+higher engagement-rate values than most others.
+
+Possible next step: Check the definition and scale of
+engagement_rate, validate extreme values, and use robust statistics
+such as the median and interquartile range alongside the mean.
+
+7. Seaborn Count Plot --- Post Type
+
+What it shows: The number of records for each post_type.
+
+Insight: Reel, Video, Text, and Image posts have broadly similar
+counts. Reels appear slightly more frequent in the displayed plot, but
+the differences between post types are not large.
+
+Important: This chart shows post volume, not which post type
+performs best. Compare average engagement rate, likes, shares, or
+engagement per impression to evaluate performance.
+
+8. Seaborn Bar Plot --- Average Likes by Category
+
+What it shows: Average likes for each post_category.
+
+Insight: Average likes are relatively close across categories,
+generally around the 10,000 mark in the plotted scale. Education,
+Travel, Lifestyle, Food, Music, and Technology are toward the higher
+end, while Fitness and Fashion appear somewhat lower. The differences
+look modest compared with the overall values.
+
+Possible next step: Add confidence intervals or compare medians and
+sample sizes before treating small differences as meaningful.
+
+9. Violin Plot --- Follower Count by Sentiment
+
+What it shows: The distribution of follower_count for each
+sentiment group.
+
+Insight: The distributions overlap substantially across Neutral,
+Negative, and Positive sentiment groups. The plot does not show a clear
+separation in follower counts by sentiment. A NaN sentiment group is
+also visible, indicating missing sentiment labels are present in the
+plotted data.
+
+Data-quality note: Consider handling missing sentiment separately
+and compare group medians or sample sizes before drawing stronger
+conclusions.
+
+10. Heatmap --- Correlation Matrix
+
+What it shows: Pairwise correlations between numerical columns.
+
+Insight: Most displayed correlations are close to zero, suggesting
+weak linear relationships between most pairs of numeric variables in
+this dataset. The most noticeable pattern in the plotted matrix is a
+negative correlation between impression_count and engagement_rate
+(approximately -0.23). The relationship is modest and does not
+establish causation.
+
+Caution: user_id and post_id are identifiers, so their
+correlations generally should not be interpreted as meaningful business
+relationships.
+
+11. Pair Plot --- Likes, Shares, Comments, and Impressions
+
+What it shows: Pairwise scatter plots and individual distributions
+for likes, shares, comments, and impressions, colored by post type.
+
+Insight: The scatter panels show broad dispersion and no obvious
+strong pairwise linear relationships. The distributions overlap across
+post types, so these variables do not clearly separate post types in the
+displayed pair plot.
+
+Possible next step: Use a correlation table and a smaller, focused
+set of plots to examine specific relationships more clearly.
+
+12. Interactive Plotly Scatter --- Impressions vs. Likes by Post Type
+
+What it shows: An interactive scatter plot of impressions versus
+likes, colored by post type. Where configured, marker size represents
+shares and hover information shows post category.
+
+Insight: This interactive chart allows individual posts to be
+inspected by post type and category. As in the Matplotlib scatter plot,
+the broad spread suggests impressions alone do not neatly predict likes.
+
+How to use it: Hover over points to inspect details and compare
+clusters across post types. Remember that visual association is not
+evidence of causation.
+
+Overall Findings
+
+The dataset contains a wide range of engagement outcomes.
+
+Post counts are fairly evenly distributed across the displayed
+categories and post types.
+
+Average likes by category appear relatively similar in the saved
+chart.
+
+Engagement rate is right-skewed, with a number of high outliers.
+
+Most numeric correlations are weak; the heatmap shows a modest
+negative association between impressions and engagement rate.
+
+The plots are useful for exploratory analysis, but stronger
+recommendations require validating metric definitions, handling
+missing values consistently, and testing differences between groups.
+
+Data and Interpretation Notes
+
+The notebook's engagement_score is a simple sum of likes,
+comments, and shares. It should not be confused with the separate
+engagement_rate field.
+
+The saved plots include missing gender/sentiment categories in some
+visualizations. Check and document how missing values are handled
+before final reporting.
+
+Correlation does not imply causation.
+
+Post volume and post performance are different measures; a category
+with more posts does not necessarily have better engagement.
+
+Confirm column names and data-cleaning steps when rerunning the
+notebook, especially if the source dataset changes.
+
+How to Run
+
+Download or clone this repository.
+
+Open the notebook (.ipynb) in Jupyter Notebook, JupyterLab, or
+Google Colab.
+
+Install the required libraries if they are not already available:
+
+pip install pandas numpy matplotlib seaborn plotly
+
+Run the notebook cells in order. An internet connection is needed to
+load the CSV from the raw GitHub URL.
+
+Project Outcome
+
+This project demonstrates an end-to-end exploratory data analysis
+workflow using Python, from loading and inspecting data to statistical
+summaries and static/interactive visualizations. It provides a
+foundation for further analysis of content performance, audience
+distribution, and engagement patterns.
+
+📌 Conclusion
+
+This project demonstrates how Python-based exploratory data analysis can be used to investigate social media engagement, audience demographics, content categories, and relationships between engagement metrics.
+
+The visualizations provide a clearer understanding of the dataset and help identify patterns that can support further investigation into social media content performance.
+
+Note: The findings are descriptive and depend on the available dataset. They do not establish causation or prove that a particular post type or category will consistently achieve higher engagement.
+
+👩‍💻 Skills Demonstrated
+Data loading and exploration
+Data cleaning and missing-value analysis
+Data type conversion
+Exploratory Data Analysis (EDA)
+Pandas and NumPy operations
+Statistical data visualization
+Correlation analysis
+Interactive visualization using Plotly
+Insight generation and project documentation
+
+⭐ Project Status
+
+Completed: Exploratory data analysis and visualization.
+
+Future Improvements: Compare engagement rates by post type and category, investigate engagement by posting time, and develop a predictive model for post engagement.

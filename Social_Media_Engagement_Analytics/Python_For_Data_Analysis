@@ -1,5 +1,6 @@
 📊 Social Media Engagement Analysis
 
+
 📌 Project Overview
 
 This project explores a social media engagement dataset using Python. It
@@ -99,7 +100,7 @@ NumPy – Numerical operations
 Matplotlib – Data visualization
 Seaborn – Statistical visualization
 Plotly – Interactive visualization
-Jupyter Notebook – Development environment
+Google Colab – Development environment
 
 🔍 Analysis Workflow
 
